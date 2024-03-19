@@ -1,6 +1,7 @@
 ---
 import GitHub from "./icons/GitHub.astro"
 import NextJS from "./icons/NextJS.astro"
+import ReactJs from "./icons/React.astro"
 import Tailwind from "./icons/Tailwind.astro"
 import LinkButton from "./LinkButton.astro"
 
@@ -9,6 +10,11 @@ const TAGS = {
     name: "Next.js",
     class: "bg-black text-white",
     icon: NextJS,
+  },
+  REACT: {
+    name: "React.js",
+    class: "bg-black text-white",
+    icon: ReactJs,
   },
   TAILWIND: {
     name: "Tailwind CSS",
@@ -24,7 +30,7 @@ const PROJECTS = [
     link: "https://ip-address-tracker-erriza.netlify.app/",
     github: "https://github.com/erriza/Ip-address-tracker",
     image: "/projects/IpTracker.PNG",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+    tags: [TAGS.REACT, TAGS.TAILWIND],
   },
   {
     title: "Keeper App - A great webpage to remember your everyday tasks",
@@ -32,7 +38,7 @@ const PROJECTS = [
       "Keeper App, similar to Google App functionality made with React as WebBootCamp challenge",
     link: "https://erriza.github.io/KeeperNotes/",
     image: "/projects/KeeperCaptura.PNG",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+    tags: [TAGS.REACT, TAGS.TAILWIND],
   },
   {
     title: "Advice App - A great webpage generate dayli advices for motivate you",
@@ -40,7 +46,7 @@ const PROJECTS = [
       "This app uses an API to give a random advice, developed with React as a challenge for FrontMentor",
     link: "https://erriza.github.io/advice-generator-app/",
     image: "/projects/adviceCaptura.PNG",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+    tags: [TAGS.REACT, TAGS.TAILWIND],
   },
   {
     title: "Patrimonio Select - Single Page Application focusing on UI",
@@ -48,7 +54,7 @@ const PROJECTS = [
       "This is a SPA using react/vite - tailwind AceternityUI and FramerMotion, mostly to apply UI experience",
     link: "https://patrimonio-select.netlify.app/",
     image: "/projects/PatrimonioSelect.PNG",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+    tags: [TAGS.REACT, TAGS.TAILWIND],
   },
 ]
 ---
