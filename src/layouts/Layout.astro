@@ -13,6 +13,34 @@ interface Props {
 const { description, title } = Astro.props
 ---
 
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+  const h1Element = document.getElementById("name");
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let iterations = 0;
+
+  if (h1Element) {
+    const interval = setInterval(() => {
+      const textSpan = h1Element.querySelector("span");
+
+      if (textSpan) {
+        textSpan.innerText = textSpan.dataset.value!.split("").map((letter, index) => {
+          if (index < iterations) {
+            return letter;
+          }
+          return letters[Math.floor(Math.random() * 26)];
+        }).join("");
+
+        if (iterations >= textSpan?.dataset.value?.length) {
+          clearInterval(interval);
+        }
+      }
+
+      iterations += 1;
+    }, 60);
+  }
+});
+</script>
 <!doctype html>
 <html lang="es">
   <head>
