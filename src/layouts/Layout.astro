@@ -45,9 +45,23 @@ const blob = document.getElementById("blob") as HTMLElement;
   document.body.onpointermove = event => {
     const { clientX, clientY } = event;
 
+    const wWidth = window.window.innerWidth;
+    const wHeight = window.window.innerHeight;
+    const blobWidth= blob.clientWidth;
+    const blobHeight= blob.clientHeight;
+
+    const maxLeft = wWidth - blobWidth;
+    const maxtop = wHeight - blobHeight;
+
+    let targetLeft = clientX;
+    let targetTop = clientY;
+
+    targetLeft = Math.min(maxLeft, Math.max(0, targetLeft));
+    targetTop = Math.min(maxtop, Math.max(0, targetTop));
+
     (blob ?? {}).animate({
-      left: `${clientX}px`,
-      top: `${clientY}px`,
+      left: `${targetLeft}px`,
+      top: `${targetTop}px`,
     }, {duration: 3000, fill : "forwards"})
   }
 
@@ -71,7 +85,7 @@ const blob = document.getElementById("blob") as HTMLElement;
       bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
       dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
     >
-    <div id="blob"/>
+    <div id="blob" class="hidden md:block"/>
     </div>
     <Header />
     <slot />
@@ -128,6 +142,12 @@ const blob = document.getElementById("blob") as HTMLElement;
     }
   }
 
+  @media (max-width: 768px) {
+    #blob {
+      display: none;
+    }
+  }
+  
   #header-nav {
     animation: blur linear both 0.5s;
     animation-timeline: scroll();
