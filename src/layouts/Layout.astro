@@ -21,7 +21,7 @@ const { description, title } = Astro.props
 
   if (h1Element) {
     const interval = setInterval(() => {
-      const textSpan = h1Element.querySelector("span");
+      const textSpan = h1Element.querySelector("span") as HTMLElement;
 
       if (textSpan) {
         textSpan.innerText = textSpan.dataset.value!.split("").map((letter, index) => {
@@ -31,7 +31,7 @@ const { description, title } = Astro.props
           return letters[Math.floor(Math.random() * 26)];
         }).join("");
 
-        if (iterations >= textSpan?.dataset.value?.length) {
+        if (iterations >= textSpan?.dataset.value?.length!) {
           clearInterval(interval);
         }
       }
@@ -40,7 +40,19 @@ const { description, title } = Astro.props
     }, 60);
   }
 });
+
+const blob = document.getElementById("blob") as HTMLElement;
+  document.body.onpointermove = event => {
+    const { clientX, clientY } = event;
+
+    (blob ?? {}).animate({
+      left: `${clientX}px`,
+      top: `${clientY}px`,
+    }, {duration: 3000, fill : "forwards"})
+  }
+
 </script>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -59,6 +71,7 @@ const { description, title } = Astro.props
       bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
       dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
     >
+    <div id="blob"/>
     </div>
     <Header />
     <slot />
@@ -82,8 +95,27 @@ const { description, title } = Astro.props
     flex-direction: column;
     min-height: 100vh;
     overscroll-behavior: none;
+    backdrop-filter: blur(200px);
   }
 
+  #blob {
+  background-color: #242424;
+  height: 300px;
+  aspect-ratio: 1;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: linear-gradient(
+    to right,
+    aquamarine,
+    mediumpurple
+  );
+  animation: rotate 20s infinite;
+  filter: blur(100px);
+}
+  
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -100,6 +132,16 @@ const { description, title } = Astro.props
     animation: blur linear both 0.5s;
     animation-timeline: scroll();
     animation-range: 0 500px;
+  }
+
+  @keyframes rotate {
+    from {
+      rotate: 0deg
+    }
+
+    to {
+      rotate: 360deg;
+    }
   }
 
   @keyframes blur {
