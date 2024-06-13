@@ -3,6 +3,7 @@ import GitHub from "./icons/GitHub.astro"
 import NextJS from "./icons/NextJS.astro"
 import ReactJs from "./icons/React.astro"
 import Tailwind from "./icons/Tailwind.astro"
+import MongoDb from "./icons/MongoDB.astro"
 import LinkButton from "./LinkButton.astro"
 
 const TAGS = {
@@ -16,6 +17,11 @@ const TAGS = {
     class: "bg-black text-white",
     icon: ReactJs,
   },
+  MONDODB: {
+    name: "MongoDb",
+    class: "bg-[#b8c4c2] text-black",
+    icon: MongoDb,
+  },
   TAILWIND: {
     name: "Tailwind CSS",
     class: "bg-[#003159] text-white",
@@ -23,6 +29,15 @@ const TAGS = {
   },
 }
 const PROJECTS = [
+  {
+    title: "Secret Santa Pair Generator",
+    description:
+      "This project generates rule-complian Secret Santa pairings using TypeScript, Express and MongoDB. Leaveraging the Hopcroft-Karp algorithm, it ensures optimal, non-repetitive matchings while respecting family constrains",
+    link: "https://secret-santa-backend-7t6k.onrender.com/",
+    github: "https://github.com/erriza/Secret-Santa",
+    image: "/projects/SecretSanta.PNG",
+    tags: [TAGS.REACT, TAGS.TAILWIND, TAGS.MONDODB],
+  },
   {
     title: "Dashboard - A dashboard example - SaaS",
     description:
